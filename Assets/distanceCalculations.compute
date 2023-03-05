@@ -1,0 +1,48 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+struct Pheromone {
+    float2 position;
+    float strength;
+};
+
+struct AntPosition {
+    float2 position;
+    float sensorStrength;
+};
+
+float str;
+
+RWStructuredBuffer<Pheromone> pheromones;
+RWStructuredBuffer<AntPosition> antPositions;
+
+[numthreads(8,8,8)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    
+
+    Pheromone pheromone = pheromones[id.x];
+    
+    float2 antPosition = antPositions[0].position;
+    
+    float2 pheroPosition = pheromone.position;
+
+    float dist = distance(antPosition, pheroPosition);
+
+    if (dist > 0.45) {
+        pheromone.strength = 0;
+    }
+
+
+    //antPosition.sensorStrength = pheromone.strength;
+
+
+
+    //Pheromone pheromone = pheromones[id.x];
+    //pheromone.position = float2(1337, 0);
+
+    pheromones[id.x] = pheromone;
+
+}
