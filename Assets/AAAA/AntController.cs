@@ -188,7 +188,7 @@ public abstract class AntController : MonoBehaviour
         return antLogic.getTurnStrength();
     }
 
-    //Finder myrens rotation i grader (- Det er 
+    //Finder myrens rotation
     public float GetCurrentRotation() {
         return antLogic.getCurrentRotation();
     }
@@ -202,4 +202,5 @@ public abstract class AntController : MonoBehaviour
     public Vector2 GetDirectionToAnthill() {
         return antLogic.getDirectionToAnthill();
     }
+
 }
