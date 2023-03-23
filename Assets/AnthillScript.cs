@@ -20,10 +20,15 @@ public class AnthillScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!antPrefab.GetComponent<AntController>())
+        {
+            return;
+        }
         playerCount++;
         playerNumber = playerCount;
 
         antHill = spawnPosition;
+
         StartCoroutine(SpawnAnts());
     }
 

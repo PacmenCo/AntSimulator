@@ -52,7 +52,10 @@ public class AntLogic : MonoBehaviour
     void Start()
     {
         position = this.transform.position;
-        rigidbody2D = this.GetComponent<Rigidbody2D>(); 
+        rigidbody2D = this.GetComponent<Rigidbody2D>();
+        if (!this.GetComponent<AntController>()) { 
+            this.gameObject.SetActive(false);
+        }
         antController = this.GetComponent<AntController>();
     }
 
