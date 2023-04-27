@@ -39,7 +39,6 @@ public class PheromoneLogic : MonoBehaviour
                 //Debug.Log("Phero was deleted");
                 break;
             }
-            Debug.Log(lifetime);
             pheromone.strength = initialStrength - evaporateValue * initialStrength * timeSinceCreation;  //initialStrength - initialStrength * lifetime/timeSinceCreation;
         }
 
