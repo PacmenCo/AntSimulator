@@ -280,6 +280,7 @@ public class AntLogic : MonoBehaviour
     {
         if (Vector2.Distance(getAntHillPosition(), this.transform.position) < 1.5f)
         {
+            Debug.Log("annoying " + (getAntHillPosition() - this.transform.position).normalized);
             return (getAntHillPosition() - this.transform.position).normalized;
         }
         return Vector2.zero;

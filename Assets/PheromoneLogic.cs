@@ -34,11 +34,12 @@ public class PheromoneLogic : MonoBehaviour
         float timeSinceCreation = 0;
         while ((timeSinceCreation = Time.time - creationTime) < lifetime) { 
             yield return new WaitForSeconds(Random.Range(1f,3f));
-            if (pheromone.strength == 0)
+            if (pheromone.strength <= 0)
             {
                 //Debug.Log("Phero was deleted");
                 break;
             }
+            Debug.Log(lifetime);
             pheromone.strength = initialStrength - evaporateValue * initialStrength * timeSinceCreation;  //initialStrength - initialStrength * lifetime/timeSinceCreation;
         }
 
@@ -59,17 +60,17 @@ public class PheromoneLogic : MonoBehaviour
         this.pheromoneController = pheromoneController;
         if (pheromoneType.Equals(PheromoneType.RED))
         {
-            if (lifetime > 25)
+            if (lifeTime > 25)
             {
-                lifetime = 25;
+                lifeTime = 25;
             }
         }
         else {
-            if (lifetime > 65) {
-                lifetime = 65;
+            if (lifeTime > 65) {
+                lifeTime = 65;
             }
         }
-        this.lifetime = lifetime;
+        this.lifetime = lifeTime;
 
 
         this.initialStrength = initialPheromoneStrength > 10 ? 10 : (initialPheromoneStrength < 1 ? 1 : initialPheromoneStrength);
